@@ -1,0 +1,14 @@
+#root {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+}
+
+@font-face{
+  font-family: Shlop;
+  src: url('../fonts/shlop.ttf');
+}
