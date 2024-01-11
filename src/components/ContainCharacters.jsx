@@ -1,21 +1,24 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./containCharacters.module.css";
 import CardCharacter from "./CardCharacter";
+import useCharacter from "../hooks/useCharacter";
+import { useParams } from "react-router-dom";
 
 export default function ContainCharacters() {
-  const [characters, setCharacters] = useState([]);
+  const { info, getAllCharacters } = useCharacter();
+
+  const { byStatus } = useParams();
 
   useEffect(() => {
-    fetch("https://rickandmortyapi.com/api/character")
-      .then((response) => response.json())
-      .then((data) => setCharacters(data.results));
-  }, []);
+    getAllCharacters(byStatus);
+  }, [byStatus]); // []  1 ejec      [{}, {}, {}]  2 ejec      [{}, {}, {}]   [{}, {}, {}]
+  //  undefined 1ejec
 
   return (
     <div className={styles.container}>
       <div className={styles.characters}>
-        {characters &&
-          characters.map((item) => (
+        {info &&
+          info.map((item) => (
             <CardCharacter
               key={item.id}
               id={item.id}

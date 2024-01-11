@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./cardCharacter.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function CardCharacter({
   id,
@@ -9,8 +10,10 @@ export default function CardCharacter({
   status,
   gender,
 }) {
+  const navigate = useNavigate();
+
   return (
-    <div className={styles.box}>
+    <div className={styles.box} onClick={() => navigate(`/detail/${id}`)}>
       <img src={image} alt={name} className={styles.img} />
       <div className={styles.character}>
         <h3 className={styles.name}>{name}</h3>
